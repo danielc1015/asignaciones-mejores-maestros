@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Reunion } from 'src/app/models/Reunion';
+import { ReunionService } from 'src/app/services/reunion.service';
 
 @Component({
   selector: 'app-reunion-lista',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReunionListaComponent implements OnInit {
 
-  constructor() { }
+  constructor(private reunionService: ReunionService) { }
+  reuniones: Reunion[];
 
   ngOnInit(): void {
+    this.obtenerReuniones();
   }
 
+  obtenerReuniones(): void {
+    this.reuniones = this.reunionService.obtenerTodas();
+    console.log(this.reuniones);
+  }
 }

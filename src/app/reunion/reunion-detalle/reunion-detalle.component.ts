@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { AsignacionService } from 'src/app/services/asignacion.service';
+import { ReunionService } from 'src/app/services/reunion.service';
 
 @Component({
   selector: 'app-reunion-detalle',
@@ -7,9 +11,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReunionDetalleComponent implements OnInit {
 
-  constructor() { }
+  ID: number;
+  reunion;
+  tiposAsignacion;
+  asignacionForm = new FormGroup({
+    tipoAsignacion: new FormControl('', [Validators.required])
+  });
+
+  constructor(private activatedRoute: ActivatedRoute, private reunionService: ReunionService, private asignacionService: AsignacionService) { }
 
   ngOnInit(): void {
+    this.tiposAsignacion = this.asignacionService.obtenerTiposAsignacion();
+    // tslint:disable-next-line:radix
+    this.ID = parseInt(this.activatedRoute.snapshot.params.id);
+    this.obtenerReunion();
+  }
+
+  obtenerReunion(): void {
+    console.log(this.ID);
+
+    this.reunion = this.reunionService.obtenerPorID(this.ID);
+    console.log(this.reunion);
   }
 
 }

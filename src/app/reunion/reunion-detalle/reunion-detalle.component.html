@@ -1,1 +1,18 @@
-<p>reunion-detalle works!</p>
+<h2 class="mb-5">Reunión del {{ reunion.fecha }}</h2>
+
+<div class="row" *ngIf="reunion">
+  <div class="col-md-7">
+    <h5>Asignaciones</h5>
+  </div>
+  <div class="col-md-5">
+    <h5>Agregar Asignación</h5>
+    <form [formGroup]="asignacionForm" (submit)="submitAsignacion()">
+      <div class="form-group">
+        <label for="">Tipo</label>
+        <select *ngIf="tiposAsignacion" class="form-control form-control-lg mr-sm-2" formControlName="tipoAsignacion">
+          <option *ngFor="let tipo of tiposAsignacion" [value]="tipo.id">{{ tipo.nombre }}</option>
+        </select>
+      </div>
+    </form>
+  </div>
+</div>
