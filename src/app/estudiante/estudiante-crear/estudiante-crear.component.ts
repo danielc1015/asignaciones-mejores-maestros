@@ -22,11 +22,13 @@ export class EstudianteCrearComponent implements OnInit {
     this.setIDNuevo();
   }
 
+  // tslint:disable-next-line:typedef
   obtenerEstudiantes() {
     this.estudiantes = this.estudianteService.obtenerTodos();
   }
 
   setIDNuevo(): void {
+    // tslint:disable-next-line:triple-equals
     if (this.estudiantes != '') {
       const ultimo = this.estudiantes[this.estudiantes.length - 1];
 
