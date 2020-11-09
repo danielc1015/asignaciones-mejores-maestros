@@ -6,13 +6,38 @@
   </div>
   <div class="col-md-5">
     <h5>Agregar Asignación</h5>
-    <form [formGroup]="asignacionForm" (submit)="submitAsignacion()">
+    <form (submit)="submitAsignacion()">
       <div class="form-group">
         <label for="">Tipo</label>
-        <select *ngIf="tiposAsignacion" class="form-control form-control-lg mr-sm-2" formControlName="tipoAsignacion">
+        <select *ngIf="tiposAsignacion" class="form-control form-control-lg mr-sm-2" name="tipoAsignacion" [(ngModel)]="asignacion.tipoAsignacion">
           <option *ngFor="let tipo of tiposAsignacion" [value]="tipo.id">{{ tipo.nombre }}</option>
         </select>
       </div>
+      <div *ngIf="asignacion.tipoAsignacion == 5" class="form-group">
+        <label for="">Estudiante</label>
+        <select class="form-control form-control-lg mr-sm-2" name="estudiante1" (change)="onEstudiante1Change($event)">
+          <option *ngFor="let estudiante of estudiantesHombre; index as i" [selected]="i==0" [value]="estudiante.id">{{ estudiante.nombre }}</option>
+        </select>
+      </div>
+      <div *ngIf="asignacion.tipoAsignacion != 5" class="form-group">
+        <label for="">Estudiante 1</label>
+        <select class="form-control form-control-lg mr-sm-2" name="estudiante1"(change)="onEstudiante1Change($event)">
+          <option *ngFor="let estudiante of estudiantes; index as i" [selected]="i==0" [value]="estudiante.id">{{ estudiante.nombre }}</option>
+        </select>
+      </div>
+      <div *ngIf="asignacion.tipoAsignacion != 5 && asignacion.genero=='hombre'" class="form-group">
+        <label for="">Estudiante 2</label>
+        <select class="form-control form-control-lg mr-sm-2" name="estudiante2" (change)=onEstudiante2Change($event)>
+          <option *ngFor="let estudiante of estudiantesHombre; index as i" [selected]="i==1" [value]="estudiante.id">{{ estudiante.nombre }}</option>
+        </select>
+      </div>
+      <div *ngIf="asignacion.tipoAsignacion != 5 && asignacion.genero=='mujer'" class="form-group" >
+        <label for="">Estudiante 2</label>
+        <select class="form-control form-control-lg mr-sm-2" name="estudiante2" (change)=onEstudiante2Change($event)>
+          <option *ngFor="let estudiante of estudiantesMujer; index as i" [selected]="i==1" [value]="estudiante.id">{{ estudiante.nombre }}</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary btn-lg">Guardar</button>
     </form>
   </div>
 </div>

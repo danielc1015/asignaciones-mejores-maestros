@@ -17,14 +17,17 @@ export class EstudianteService {
   }
 
   // tslint:disable-next-line:typedef
-  obtenerUltimoHombre() {
-    let estudiantes = this.obtenerTodos();
-    estudiantes = estudiantes.filter(est => est.genero === 'hombre');
-    const estudiantesOrdenados = estudiantes.sort((a, b) => a.ultimaAsignacion - b.ultimaAsignacion);
-
-    console.log(estudiantesOrdenados);
-
+  obtenerUltimos() {
+    const estudiantes = this.obtenerTodos();
+    return estudiantes.sort((a, b) => a.ultimaAsignacion - b.ultimaAsignacion);
   }
+  // tslint:disable-next-line:typedef
+  obtenerUltimosQue(genero: string) {
+    let estudiantes = this.obtenerTodos();
+    estudiantes = estudiantes.filter(est => est.genero === genero);
+    return estudiantes.sort((a, b) => a.ultimaAsignacion - b.ultimaAsignacion);
+  }
+
 
   modificarLista(estudiante): void {
     const todos = this.obtenerTodos();

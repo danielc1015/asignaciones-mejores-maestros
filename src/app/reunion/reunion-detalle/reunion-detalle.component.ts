@@ -15,9 +15,12 @@ export class ReunionDetalleComponent implements OnInit {
   ID: number;
   reunion;
   tiposAsignacion;
-  asignacionForm = new FormGroup({
-    tipoAsignacion: new FormControl('', [Validators.required])
-  });
+  estudiante1;
+  estudiante2;
+  estudiantes: any[];
+  estudiantesHombre;
+  estudiantesMujer;
+  asignacion;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -31,7 +34,15 @@ export class ReunionDetalleComponent implements OnInit {
     // tslint:disable-next-line:radix
     this.ID = parseInt(this.activatedRoute.snapshot.params.id);
     this.obtenerReunion();
-    this.estudianteService.obtenerUltimoHombre();
+    this.estudiantes = this.estudianteService.obtenerUltimos();
+    this.estudiantesHombre = this.estudianteService.obtenerUltimosQue('hombre');
+    this.estudiantesMujer = this.estudianteService.obtenerUltimosQue('mujer');
+    this.asignacion = {
+      tipoAsignacion: null,
+      estudiante1: this.estudiantes[0],
+      estudiante2: 2,
+      genero: null
+    };
   }
 
   obtenerReunion(): void {
@@ -39,6 +50,20 @@ export class ReunionDetalleComponent implements OnInit {
 
     this.reunion = this.reunionService.obtenerPorID(this.ID);
     console.log(this.reunion);
+  }
+
+  // tslint:disable-next-line:typedef
+  onEstudiante1Change(e) {
+    console.log(this.asignacion.estudiante1);
+    const seleccionado = this.estudiantes.find(est => est.id == e.target.value);
+    this.asignacion.genero = seleccionado.genero;
+    this.asignacion.estudiante1 = seleccionado;
+  }
+
+  // tslint:disable-next-line:typedef
+  onEstudiante2Change(e) {
+    const seleccionado = this.estudiantes.find(est => est.id == e.target.value);
+    this.asignacion.estudiante2 = seleccionado;
   }
 
 }
