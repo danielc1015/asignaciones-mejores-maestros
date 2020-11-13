@@ -9,7 +9,7 @@
     <form (submit)="submitAsignacion()">
       <div class="form-group">
         <label for="">Tipo</label>
-        <select *ngIf="tiposAsignacion" class="form-control form-control-lg mr-sm-2" name="tipoAsignacion" [(ngModel)]="asignacion.tipoAsignacion">
+        <select *ngIf="tiposAsignacion" class="form-control form-control-lg mr-sm-2" name="tipoAsignacion" (change)="onTipoAsignacionChange($event)">
           <option *ngFor="let tipo of tiposAsignacion" [value]="tipo.id">{{ tipo.nombre }}</option>
         </select>
       </div>

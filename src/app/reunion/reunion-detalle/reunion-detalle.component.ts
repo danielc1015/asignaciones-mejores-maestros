@@ -40,8 +40,8 @@ export class ReunionDetalleComponent implements OnInit {
     this.asignacion = {
       tipoAsignacion: null,
       estudiante1: this.estudiantes[0],
-      estudiante2: 2,
-      genero: null
+      estudiante2: this.estudiantes[0].genero == 'hombre' ? this.estudiantesHombre[1] : this.estudiantesMujer[1],
+      genero: this.estudiantes[0].genero
     };
   }
 
@@ -50,6 +50,12 @@ export class ReunionDetalleComponent implements OnInit {
 
     this.reunion = this.reunionService.obtenerPorID(this.ID);
     console.log(this.reunion);
+  }
+
+  onTipoAsignacionChange(e) {
+    const seleccionado = e.target.value;
+    this.asignacion.tipoAsignacion = parseInt(seleccionado);
+    console.log(this.asignacion.tipoAsignacion);
   }
 
   // tslint:disable-next-line:typedef
@@ -64,6 +70,20 @@ export class ReunionDetalleComponent implements OnInit {
   onEstudiante2Change(e) {
     const seleccionado = this.estudiantes.find(est => est.id == e.target.value);
     this.asignacion.estudiante2 = seleccionado;
+  }
+
+  submitAsignacion(): void {
+    /**
+     * TODO: guardar estudiante 2 solo si hay, dependiendo del tipo de asignacion
+     */
+    const asignacion = {
+      tipoAsignacion: this.tiposAsignacion.find(tipo => tipo.id == this.asignacion.tipoAsignacion),
+      estudiante1: this.asignacion.estudiante1,
+      estudiante2: this.asignacion.estudiante2,
+      fecha: this.reunion.fecha
+    };
+    console.log(asignacion);
+
   }
 
 }
