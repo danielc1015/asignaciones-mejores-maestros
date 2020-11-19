@@ -82,8 +82,19 @@ export class ReunionDetalleComponent implements OnInit {
       estudiante2: this.asignacion.estudiante2,
       fecha: this.reunion.fecha
     };
-    console.log(asignacion);
 
+    this.agregarAsignacion(asignacion);
+
+
+  }
+
+  agregarAsignacion(asignacion): void {
+    const reuniones = this.reunionService.obtenerTodas();
+    const reunion = reuniones.find( reu => reu.id == this.ID);
+    reunion.asignaciones.push(asignacion);
+    console.log(reunion);
+
+    this.reunionService.actualizarReunion(this.ID, reunion);
   }
 
 }

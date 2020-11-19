@@ -1,11 +1,12 @@
-<div class="row">
+<div *ngIf="reuniones" class="row">
   <div class="col-md-12">
     <div *ngFor="let reunion of reuniones" class="card mb-3">
       <div class="card-header">
-        <h4 class="card-title">{{ reunion.fecha }}</h4>
+        <h4 class="card-title">{{ reunion.fecha | date:'fullDate' }}</h4>
       </div>
       <div class="card-body">
-        Ejemplo1: DC - DC
+        <strong>Asignaciones:</strong>
+        <p *ngFor="let asignacion of reunion.asignaciones">{{ asignacion.tipoAsignacion.nombre + ': ' }}{{ asignacion.estudiante1.nombre + ' - ' + asignacion.estudiante2.nombre}}</p>
       </div>
     </div>
   </div>

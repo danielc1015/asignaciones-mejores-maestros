@@ -1,4 +1,4 @@
-<h2 class="mb-5">Reunión del {{ reunion.fecha }}</h2>
+<h2 *ngIf="reunion" class="mb-5">Reunión del {{ reunion.fecha }}</h2>
 
 <div class="row" *ngIf="reunion">
   <div class="col-md-7">
