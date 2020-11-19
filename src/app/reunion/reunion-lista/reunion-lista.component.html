@@ -1,1 +1,12 @@
-<p>reunion-lista works!</p>
+<div class="row">
+  <div class="col-md-12">
+    <div *ngFor="let reunion of reuniones" class="card mb-3">
+      <div class="card-header">
+        <h4 class="card-title">{{ reunion.fecha }}</h4>
+      </div>
+      <div class="card-body">
+        Ejemplo1: DC - DC
+      </div>
+    </div>
+  </div>
+</div>
