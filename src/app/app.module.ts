@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
+import localePy from '@angular/common/locales/es-PY';
+import { registerLocaleData } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,6 +11,7 @@ import { ReunionCrearComponent } from './reunion/reunion-crear/reunion-crear.com
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EstudianteCrearComponent } from './estudiante/estudiante-crear/estudiante-crear.component';
 import { EstudianteListaComponent } from './estudiante/estudiante-lista/estudiante-lista.component';
+registerLocaleData(localePy, 'es');
 
 @NgModule({
   declarations: [
@@ -25,7 +28,7 @@ import { EstudianteListaComponent } from './estudiante/estudiante-lista/estudian
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [{ provide: LOCALE_ID, useValue: 'es' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

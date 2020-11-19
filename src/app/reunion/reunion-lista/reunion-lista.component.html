@@ -2,7 +2,7 @@
   <div class="col-md-12">
     <div *ngFor="let reunion of reuniones" class="card mb-3">
       <div class="card-header">
-        <h4 class="card-title">{{ reunion.fecha | date:'fullDate' }}</h4>
+        <a [routerLink]="[reunion.id]" class="card-title">{{ reunion.fecha | date:'fullDate' }}</a>
       </div>
       <div class="card-body">
         <strong>Asignaciones:</strong>
