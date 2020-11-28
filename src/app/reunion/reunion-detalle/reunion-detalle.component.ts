@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AsignacionService } from 'src/app/services/asignacion.service';
 import { EstudianteService } from 'src/app/services/estudiante.service';
 import { ReunionService } from 'src/app/services/reunion.service';
+import { WhatsappService } from 'src/app/services/whatsapp.service';
 
 @Component({
   selector: 'app-reunion-detalle',
@@ -26,7 +27,8 @@ export class ReunionDetalleComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private reunionService: ReunionService,
     private asignacionService: AsignacionService,
-    private estudianteService: EstudianteService
+    private estudianteService: EstudianteService,
+    private whatsappService: WhatsappService
     ) { }
 
   ngOnInit(): void {
@@ -98,6 +100,11 @@ export class ReunionDetalleComponent implements OnInit {
 
     this.reunionService.actualizarReunion(this.ID, reunion);
     this.obtenerReunion();
+  }
+
+  enviarMensaje() {
+    const url = this.whatsappService.enviarMensaje('+56964140655', this.reunion.asignaciones[0]);
+    window.open(url, '_blank');
   }
 
 }
