@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
-import localePy from '@angular/common/locales/es-PY';
 import { registerLocaleData } from '@angular/common';
+import localePy from '@angular/common/locales/es-PY';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';

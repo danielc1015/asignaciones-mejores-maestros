@@ -1,8 +1,13 @@
 <h2 *ngIf="reunion" class="mb-5">Reunión del {{ reunion.fecha }}</h2>
 
-<div class="row" *ngIf="reunion">
+<div *ngIf="reunion" class="row">
   <div class="col-md-7">
-    <h5>Asignaciones</h5>
+    <div *ngFor="let asignacion of reunion.asignaciones" class="row">
+      <div class="col-md-12">
+        <strong>{{asignacion.tipoAsignacion.nombre}}:</strong>
+        <p>{{ asignacion.estudiante1.nombre + ' - ' + asignacion.estudiante2.nombre}}</p>
+      </div>
+    </div>
   </div>
   <div class="col-md-5">
     <h5>Agregar Asignación</h5>

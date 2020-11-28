@@ -52,8 +52,10 @@ export class ReunionDetalleComponent implements OnInit {
     console.log(this.reunion);
   }
 
+  // tslint:disable-next-line:typedef
   onTipoAsignacionChange(e) {
     const seleccionado = e.target.value;
+    // tslint:disable-next-line:radix
     this.asignacion.tipoAsignacion = parseInt(seleccionado);
     console.log(this.asignacion.tipoAsignacion);
   }
@@ -95,6 +97,7 @@ export class ReunionDetalleComponent implements OnInit {
     console.log(reunion);
 
     this.reunionService.actualizarReunion(this.ID, reunion);
+    this.obtenerReunion();
   }
 
 }
